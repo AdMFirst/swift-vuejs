@@ -3,7 +3,7 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary z-3">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">
         <img src="@/assets/logo.png" alt="Logo" width="24" height="24" class="d-inline-block align-text-top"/>

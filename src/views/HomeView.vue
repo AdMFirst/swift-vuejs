@@ -1,8 +1,10 @@
-
+<script setup>
+import { RouterLink, RouterView } from 'vue-router'
+</script>
 
 <template>
   <div class="background-image"></div>
-  <div class="container h-100 absolute-ps">
+  <div class="container h-100 absolute-ps z-0">
     <div class="d-flex align-items-center justify-content-center h-100">
       <div class="d-flex flex-column align-items-stretch">
         <h1 class="text align-self-center display-3 text-light m-0">Swift E-Learning</h1>
@@ -11,9 +13,12 @@
           mulai mengajar sekarang!
         </p>
         <div class="d-flex justify-content-evenly p-2">
-          <button class="btn btn-light px-5" type="button">Daftar</button>
-          <br/> 
-          <button type="button" class="btn btn-primary px-5">Masuk</button>
+          <RouterLink to="/register">
+            <button class="btn btn-light px-5" type="button">Daftar</button>
+          </RouterLink>
+          <RouterLink to="/login">
+            <button type="button" class="btn btn-primary px-5">Masuk</button>
+          </RouterLink>
         </div>
       </div>
     </div>
@@ -26,8 +31,6 @@
   top: 0;
   left: 0;
   right: 0;
-
-  z-index: -1;
 }
 .background-image{
   height: 90%;
