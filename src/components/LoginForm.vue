@@ -33,9 +33,14 @@
         </div>
     </div>
 </template>
-a
+
 <script>
+import axios from 'axios'
+import { useRouter } from 'vue-router';
+
+
 export default {
+    
     data() {
         return {
             email: '',
@@ -43,43 +48,36 @@ export default {
         }
     },
     methods: {
-        async login() {
-            
+        login: function() {
             var api_url = import.meta.env.VITE_API_URL
-            var body;
+            var body, tipe_user;
 
             if ( this.isValidEmail(this.email)) {
                 api_url = api_url + "/mentor/login/"
-                body = JSON.stringify({
+                tipe_user = "mentor"
+                body = {
                         email: this.email,
                         password: this.password
-                    })
+                    }
             } else {
-
-
                 api_url = api_url + "/admin/login/"
-                body = JSON.stringify({
+                tipe_user = "admin"
+                body = {
                         id: this.email,
                         password: this.password
-                    })
+                    }
             }
 
             try {
-                
-                const response = await fetch(api_url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'text/plain'
-                    },
-                    body: body
+                axios.post(api_url, body)
+                .then(response => {
+                    sessionStorage.setItem('access_token', response.data.access_token);
+                    sessionStorage.setItem('user_type', tipe_user)
+                    this.$router.push("/dashboard")
+                })
+                .catch(error => {
+                    console.log(error);
                 });
-                alert(JSON.stringify(response))
-                alert(response.status)
-                const data = await response.json();
-                
-                alert(response)
-                sessionStorage.setItem('isLoggedIn', true);
-                window.location.href = '/dashboard';
             } catch (error) {
                 console.error(error);
                 

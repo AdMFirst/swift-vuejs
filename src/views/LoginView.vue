@@ -1,7 +1,7 @@
 <script setup>
 import LoginForm from "../components/LoginForm.vue"
 
-const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+const isLoggedIn = sessionStorage.getItem('access_token');
 
 if (isLoggedIn) {
     window.location.href = '/dashboard';
