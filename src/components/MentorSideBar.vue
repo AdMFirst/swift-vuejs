@@ -1,17 +1,10 @@
 <template>
     <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 180px; min-height: 90vh;">
             <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item">
-                <a href="/dashboard" class="nav-link active" aria-current="page">
-                    Home
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link link-dark">
-                    Account
-                </a>
-            </li>
-            
+                <li :class="{ 'active': store.activeTab === 'tab1' }" @click="store.activeTab = 'tab1'" class="nav-link link-dark">Tab 1</li>
+                <li :class="{ 'active': store.activeTab === 'tab2' }" @click="store.activeTab = 'tab2'" class="nav-link link-dark">Tab 2</li>
+                <li :class="{ 'active': store.activeTab === 'tab3' }" @click="store.activeTab = 'tab3'" class="nav-link link-dark">Tab 3</li>
+
             </ul>
             <hr>
             <div class="dropdown">
@@ -30,9 +23,18 @@
         </div>
 </template>
 
+
 <script>
+import { store } from './store'
+
+
 export default {
     name: 'MentorSidebar',
+    data() {
+        return {
+            store
+        }
+    },
     methods: {
         logout() {
             sessionStorage.clear()
